@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Visualisation of Tic Tak Toe</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+</head>
+<body>
+	<div class="container">
+	<center>
+	<div class="jumbotron">
+  <p>Welcome Sonica Bhauryal to Tic Tac Toe Game</p>
+  	<input type="submit" value="Reset" class="btn btn-primary btn-lg" onclick="refreshPage()">
+  </p>
+</div>
+
+<table class="tbl1">
+	<tr class="tbltr1"><td class="tbltr1td1 classtd"> </td><td class="tbltr1td2 classtd"></td><td class="tbltr1td3 classtd"></td></tr>
+	<tr class="tbltr2"><td class="tbltr2td1 classtd"></td><td class="tbltr2td2 classtd"></td><td class="tbltr2td3 classtd"></td></tr>
+	<tr class="tbltr3"><td class="tbltr3td1 classtd"></td><td class="tbltr3td2 classtd"></td><td class="tbltr3td3 classtd"></td></tr>
+</table>
+</center>
+</div>
+</body>
+</html>
+
+<style>
+	.tbl1 tr td
+	{
+		border: solid 3px black;
+		padding: 30px;
+		height: 140px;
+		width: 120px;
+		text-align: center;
+		font-size: 50px;
+	}
+	.jumbotron
+	{
+		padding: 0.5px;
+	}
+</style>
+
+<!---<script src="RealTicTacToe.js"></script>--->
+
+<script>
+// Restart the game
+function refreshPage() {
+	window.location.reload();
+}
+//Declare an Gobal Array to insert values
+var arr = ['0','1','2','3','4','5','6','7','8'];
+//Declare a value to keep X and O
+var lastValue = 0;
+//Fetch all the TD
+var squares = document.querySelectorAll('td');
+//alert(squares.length)
+
+function playerfunction()
+{
+	//alert(i);
+	if(lastValue === 0 && this.innerText == '')
+	{
+		this.innerHTML = "X";
+		lastValue = 1;
+		//checkGame();
+		//arr[0]
+		//alert(this);
+		//alert(i);
+	}
+	else if(lastValue === 1  && this.innerText == '')
+	{
+		this.innerHTML = "O";
+		lastValue = 0;
+		//checkGame();
+	}
+	else
+	{
+		alert("Error occure");
+	}
+	arrayValue(); 
+	//checkGame();
+	setTimeout(function(){ checkGame(); }, 300);	
+}
+
+function callOtherfunction()
+{
+
+}
+
+for (var i = 0; i < squares.length; i++) 
+{
+	squares[i].addEventListener('click', playerfunction);
+	//squares[i].addEventListener('mouseout', callOtherfunction;
+	//alert(squares[i].innerText);
+}
+
+function arrayValue()
+{
+	for (var i = squares.length - 1; i >= 0; i--) {
+		if(squares[i].innerText == 'X' || squares[i].innerText == 'O')
+		arr[i] = squares[i].innerText;
+		//alert(squares[i].innerText);
+		//alert(arr[]);
+	}
+	//alert(arr);
+}
+//checkGame();
+function checkGame()
+{
+	//horizontal check
+	if(arr[0] === arr[1] && arr[2] === arr[1] )
+	{
+		alert(arr[0]+" Won the game.");
+		clearAll();
+	}
+	if(arr[3] === arr[4] && arr[4] === arr[5])
+	{
+		alert(arr[3]+" Won the game.");
+		clearAll();
+	}
+	if(arr[6] === arr[7] && arr[7] === arr[8])
+	{
+		alert(arr[6]+" Won the game.");
+		clearAll();
+	}
+	//Vertical check
+	if(arr[0] === arr[3] && arr[3] === arr[6] )
+	{
+		alert(arr[0]+" Won the game.");
+		clearAll();
+	}
+	if(arr[1] === arr[4] && arr[4] === arr[7])
+	{
+		alert(arr[1]+" Won the game.");
+		clearAll();
+	}
+	if(arr[2] === arr[5] && arr[5] === arr[8])
+	{
+		alert(arr[2]+" Won the game.");
+		clearAll();
+	}
+	//Diagonal check		
+	if(arr[0] === arr[4] && arr[4] === arr[8] )
+	{
+		alert(arr[0]+" Won the game.");
+		clearAll();
+	}
+	if(arr[2] === arr[4] && arr[4] === arr[6])
+	{
+		alert(arr[2]+" Won the game.");
+		clearAll();
+	}
+
+}
+
+function clearAll()
+{
+	for (var i = squares.length - 1; i >= 0; i--) {
+		squares[i].innerHTML = '';
+		arr[i] = (i+1);
+		lastValue = 0;
+	}
+	//alert(arr)
+}
+</script>
